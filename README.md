@@ -45,45 +45,49 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column        | Type    | Options                       |
-| --------------| ------- | ----------------------------- |
-| image         | string  | null: false                   |
-| name          | string  | null: false                   |
-| introduction  | text    | null: false                   |
-| genre_id      | integer | null: false                   |
-| selling_price | integer | null: false                   |
-| user_id       | integer | null: false ,foreign_key: true|
+| Column         | Type    | Options                        |
+| -------------- | ------- | ------------------------------ |
+| image          | string  | null: false                    |
+| name           | string  | null: false                    |
+| introduction   | text    | null: false                    |
+| category_id    | integer | null: false                    |
+| product_id     | integer | null: false                    |
+| delivery_id    | integer | null: false                    |
+| prefectures_id | integer | null: false                    |
+| preparation_id | integer | null: false                    |
+| selling_price  | integer | null: false                    |
+| user_id        | integer | null: false ,foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- has_one    :purchases
+- belongs_to :user
+- has_one    :purchas
 
 ## purchases テーブル
 
-| Column  | Type    | Options                       |
-| ------- | ------- | ----------------------------- |
-| user_id | integer | null: false, foreign_key: true|
-| item_id | integer | null: false, foreign_key: true|
+| Column  | Type    | Options                        |
+| ------- | ------- | ------------------------------ |
+| user_id | integer | null: false, foreign_key: true |
+| item_id | integer | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- has_one    :addresses
+- belongs_to :user
+- belongs_to :item
+- has_one    :address
 
 ## addresses テーブル
 
-| Column         | Type    | Options                       |
-| -------------- | ------- | ----------------------------- |
-| post_code      | string  | null: false                   |
-| prefectures_id | string  | null: false                   |
-| city           | string  | null: false                   |
-| address        | string  | null: false                   |
-| building_name  | string  | null: false                   |
-| phone_number   | string  | null: false                   |
-| item_id        | integer | null: false, foreign_key: true|
+| Column         | Type    | Options                        |
+| -------------- | ------- | ------------------------------ |
+| post_code      | string  | null: false                    |
+| prefectures_id | string  | null: false                    |
+| city           | string  | null: false                    |
+| address        | string  | null: false                    |
+| building_name  | string  | null: false                    |
+| phone_number   | string  | null: false                    |
+| purchase_id    | integer | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchas
