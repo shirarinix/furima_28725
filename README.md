@@ -30,61 +30,57 @@ Things you may want to cover:
 | Column     | Type   | Options     |
 | ---------- | ------ | ----------- |
 | nickname   | string | null: false |
-| adress     | string | null: false |
+| email      | string | null: false |
 | password   | string | null: false |
 | first_name | string | null: false |
 | last_name  | string | null: false |
-| birthday   | string | null: false |
+| sex_kana   | string | null: false |
+| name_kana  | string | null: false |
+| birthday   | date   | null: false |
 
 ### Association
 
-- has_many :items
-- has_many :purchases
+- has_many :items,foreign_key :"user_id"
+- has_many :purchases,foreign_key :"user_id"
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| item_image      | references | null: false, foreign_key: true |
-| item_name       | references | null: false, foreign_key: true |
-| introduction    | text       | null: false                    |
-| category        | string     | null: false                    |
-| item_condition  | string     | null: false                    |
-| Delivery_fee    | string     | null: false                    |
-| Shipping_area   | string     | null: false                    |
-| preparation_day | string     | null: false                    |
-| Selling_price   | references | null: false, foreign_key: true |
+| Column        | Type    | Options     |
+| ------------- | ------- | ----------- |
+| image         | string  | null: false |
+| name          | string  | null: false |
+| introduction  | text    | null: false |
+| category      | string  | null: false |
+| selling_price | integer | null: false |
 
 ### Association
 
 - belongs_to :users
-- belongs_to :purchases
+- has_one    :purchases,foreign_key :"item_id"
 
 ## purchases テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| card_number      | references | null: false, foreign_key: true |
-| expiration_year  | references | null: false, foreign_key: true |
-| expiration_month | references | null: false, foreign_key: true |
-| security_code    | references | null: false, foreign_key: true |
+| Column  | Type  | Options     |
+| ------- | ----- | ----------- |
+| user_id |string | null: false |
+| item_id |string | null: false |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- has_one    :adresses
+- has_one    :users
+- has_one    :items
+- belongs_to :adresses
 
 ## addresses テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| post_code     | references | null: false, foreign_key: true |
-| city          | string     | null: false                    |
-| address       | references | null: false, foreign_key: true |
-| building_name | references | null: false, foreign_key: true |
-| phone_number  | references | null: false, foreign_key: true |
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| post_code     | references | null: false |
+| city          | string     | null: false |
+| address       | references | null: false |
+| building_name | references | null: false |
+| phone_number  | references | null: false |
 
 ### Association
 
-- belongs_to :purchases
+- has_one :purchases
