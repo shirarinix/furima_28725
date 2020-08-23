@@ -40,8 +40,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :items,foreign_key :"user_id"
-- has_many :purchases,foreign_key :"user_id"
+- has_many :items
+- has_many :purchases
 
 ## items テーブル
 
@@ -52,24 +52,25 @@ Things you may want to cover:
 | introduction  | text    | null: false |
 | category      | string  | null: false |
 | selling_price | integer | null: false |
+| user_id       | integer | null: false |
 
 ### Association
 
 - belongs_to :users
-- has_one    :purchases,foreign_key :"item_id"
+- has_one    :purchases
 
 ## purchases テーブル
 
-| Column  | Type  | Options     |
-| ------- | ----- | ----------- |
-| user_id |string | null: false |
-| item_id |string | null: false |
+| Column  | Type  | Options                       |
+| ------- | ----- | ----------------------------- |
+| user_id |string | null: false, foreign_key: true|
+| item_id |string | null: false, foreign_key: true|
 
 ### Association
 
-- has_one    :users
-- has_one    :items
-- belongs_to :adresses
+- has_one :users
+- has_one :items
+- has_one :addresses
 
 ## addresses テーブル
 
@@ -83,4 +84,4 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :purchases
+- belongs to :purchases
