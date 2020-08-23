@@ -45,14 +45,18 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| image         | string  | null: false |
-| name          | string  | null: false |
-| introduction  | text    | null: false |
-| category      | string  | null: false |
-| selling_price | integer | null: false |
-| user_id       | integer | null: false |
+| Column          | Type    | Options     |
+| ----------------| ------- | ----------- |
+| image           | string  | null: false |
+| name            | string  | null: false |
+| introduction    | text    | null: false |
+| category        | string  | null: false |
+| product_state   | string  | null: false |
+| delivery_charge | string  | null: false |
+| delivery_source | string  | null: false |
+| delivery_date   | string  | null: false |
+| selling_price   | integer | null: false |
+| user_id         | integer | null: false ,foreign_key: true|
 
 ### Association
 
@@ -61,27 +65,27 @@ Things you may want to cover:
 
 ## purchases テーブル
 
-| Column  | Type  | Options                       |
-| ------- | ----- | ----------------------------- |
-| user_id |string | null: false, foreign_key: true|
-| item_id |string | null: false, foreign_key: true|
+| Column  | Type   | Options                       |
+| ------- | ------ | ----------------------------- |
+| user_id | string | null: false, foreign_key: true|
+| item_id | string | null: false, foreign_key: true|
 
 ### Association
 
-- has_one :users
-- has_one :items
-- has_one :addresses
+- belongs_to :users
+- belongs_to :items
+- has_one    :addresses
 
 ## addresses テーブル
 
-| Column        | Type       | Options     |
-| ------------- | ---------- | ----------- |
-| post_code     | references | null: false |
-| city          | string     | null: false |
-| address       | references | null: false |
-| building_name | references | null: false |
-| phone_number  | references | null: false |
+| Column        | Type   | Options     |
+| ------------- | ------ | ----------- |
+| post_code     | string | null: false |
+| city          | string | null: false |
+| address       | string | null: false |
+| building_name | string | null: false |
+| phone_number  | string | null: false |
 
 ### Association
 
-- belongs to :purchases
+- belongs_to :purchases
