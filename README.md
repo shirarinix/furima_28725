@@ -81,7 +81,7 @@ Things you may want to cover:
 | Column         | Type    | Options                        |
 | -------------- | ------- | ------------------------------ |
 | post_code      | string  | null: false                    |
-| prefectures_id | string  | null: false                    |
+| prefectures_id | integer | null: false                    |
 | city           | string  | null: false                    |
 | address        | string  | null: false                    |
 | building_name  | string  | null: false                    |
