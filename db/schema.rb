@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_095855) do
+ActiveRecord::Schema.define(version: 2020_08_29_112432) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image", null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_095855) do
     t.string "category_id", null: false
     t.string "product_id", null: false
     t.string "delivery_id", null: false
-    t.string "prefectures_id", null: false
+    t.string "prefecture_id", null: false
     t.string "preparation_id", null: false
     t.string "selling_price", null: false
     t.string "user_id", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_095855) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
-    t.string "firast_name", null: false
+    t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "sex_kana", null: false
     t.string "name_kana", null: false
