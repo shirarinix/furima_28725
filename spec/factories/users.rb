@@ -5,7 +5,7 @@ FactoryBot.define do
     end
     nickname              { Faker::Name.name} 
     first_name            { person.first.kanji }
-    last_name             { person.last.kanji } 
+    last_name             { person.first.kanji } 
     sex_kana              { person.first.katakana }
     name_kana             { person.last.katakana }
     birthday              { Faker::Date.backward }
