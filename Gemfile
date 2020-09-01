@@ -64,3 +64,7 @@ gem 'devise'
 gem 'active_hash'
 
 gem 'gimei'
+
+group :production do
+  gem 'rails_12factor'
+end
