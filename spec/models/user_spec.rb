@@ -13,18 +13,38 @@ describe User do
         @user.nickname = 'shira'
         expect(@user).to be_valid
       end
-      it 'ユーザー本名は、名字と名前それぞれが必須である' do
+      it 'ユーザー本名は、名字が必須である' do
         @user.first_name = '名字'
+        @user.last_name = '名字'
+        expect(@user).to be_valid
+      end
+      it 'ユーザー本名は、名前が必須である' do
+        @user.first_name = '名前'
         @user.last_name = '名前'
         expect(@user).to be_valid
       end
-      it 'ユーザー本名は、全角（漢字・ひらがな・カタカナ）で入力させる' do
-        @user.first_name = '漢字ひらがなカタカナ'
-        @user.last_name = '漢字ひらがなカタカナ'
+      it 'ユーザー本名は、全角（漢字）で入力させる' do
+        @user.first_name = '漢字'
+        @user.last_name = '漢字'
         expect(@user).to be_valid
       end
-      it 'ユーザー本名のフリガナは、名字と名前でそれぞれ必須である' do
+      it 'ユーザー本名は、全角（ひらがな）で入力させる' do
+        @user.first_name = 'ひらがな'
+        @user.last_name = 'ひらがな'
+        expect(@user).to be_valid
+      end
+      it 'ユーザー本名は、全角（カタカナ）で入力させる' do
+        @user.first_name = 'カタカナ'
+        @user.last_name = 'カタカナ'
+        expect(@user).to be_valid
+      end
+      it 'ユーザー本名のフリガナは、名字が必須である' do
         @user.sex_kana = 'ミョウジ'
+        @user.name_kana = 'ミョウジ'
+        expect(@user).to be_valid
+      end
+      it 'ユーザー本名のフリガナは、名前が必須である' do
+        @user.sex_kana = 'ナマエ'
         @user.name_kana = 'ナマエ'
         expect(@user).to be_valid
       end
