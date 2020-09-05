@@ -1,5 +1,6 @@
 require 'rails_helper'
-describe Item do
+
+RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
     @item.image = fixture_file_upload('app/assets/images/camera.png')
@@ -14,7 +15,7 @@ describe Item do
         expect(@item.image).to be_valid
       end
       it '商品名が必須であること' do
-        @item.name= '鬼滅の刃'
+        @item.name = '鬼滅の刃'
         expect(@item).to be_valid
       end
       it '商品の説明が必須であること' do
@@ -52,35 +53,50 @@ describe Item do
     end
 
     context '商品情報の入力がうまくいかないとき' do
-      it '出品画像が入力されていないと出品できない' do
-        # @user.nickname = ' '
-        # @user.valid?
-        # expect(@user.errors.full_messages).to include("Nickname can't be blank")
+      it '出品画像が入力されてないと出品できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が入力されていないと出品できない' do
-        # @user.email = ' '
-        # @user.valid?
-        # expect(@user.errors.full_messages).to include("Email can't be blank")
+        @item.name = " "
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Name can't be blank")
       end
       it '商品の説明が入力されていないと出品できない' do
-        # @user.password = ' '
-        # @user.valid?
-        # expect(@user.errors.full_messages).to include("Password can't be blank")
+        @item.introduction = " "
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Introduction can't be blank")
       end
       it 'カテゴリーが入力されていないと出品できない' do
-        # @user.password = 'ab123'
-        # @user.valid?
-        # expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+        @item.category_id = " "
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category is not a number")
       end
       it '商品の状態が入力されていないと出品できない' do
+        @item.product_id = " "
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Product is not a number")
       end
       it '配送料の負担が入力されていないと出品できない' do
+        @item.delivery_id = " "
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery is not a number")
       end
       it '発送元の地域が入力されていないと出品できない' do
+        @item.prefecture_id = " "
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture is not a number")
       end
       it '発送までの日数が入力されていないと出品できない' do
+        @item.preparation_id = " "
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Preparation is not a number")
       end
       it '販売価格が入力されていないと出品できない' do
+        @item.selling_price = " "
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Selling price can't be blank")
       end
     end
   end

@@ -13,9 +13,5 @@ class Item < ApplicationRecord
   # ジャンルの選択が「--」の時は保存できないようにする
   validates :delivery_id, :product_id, :category_id, :prefecture_id, :preparation_id, numericality: { other_than: 0 }
   # 空の投稿を保存できないようにする
-  validates :name, :introduction, :selling_price, presence: true, unless: :was_attached?
-
-  def was_attached?
-    self.image.attached?
-  end
+  validates :image, :name, :introduction, :selling_price, presence: true
 end
