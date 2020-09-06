@@ -59,42 +59,42 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が入力されていないと出品できない' do
-        @item.name = " "
+        @item.name = ' '
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
       it '商品の説明が入力されていないと出品できない' do
-        @item.introduction = " "
+        @item.introduction = ' '
         @item.valid?
         expect(@item.errors.full_messages).to include("Introduction can't be blank")
       end
       it 'カテゴリーが入力されていないと出品できない' do
-        @item.category_id = " "
+        @item.category_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category is not a number")
+        expect(@item.errors.full_messages).to include('Category is not a number')
       end
       it '商品の状態が入力されていないと出品できない' do
-        @item.product_id = " "
+        @item.product_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include("Product is not a number")
+        expect(@item.errors.full_messages).to include('Product is not a number')
       end
       it '配送料の負担が入力されていないと出品できない' do
-        @item.delivery_id = " "
+        @item.delivery_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery is not a number")
+        expect(@item.errors.full_messages).to include('Delivery is not a number')
       end
       it '発送元の地域が入力されていないと出品できない' do
-        @item.prefecture_id = " "
+        @item.prefecture_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture is not a number")
+        expect(@item.errors.full_messages).to include('Prefecture is not a number')
       end
       it '発送までの日数が入力されていないと出品できない' do
-        @item.preparation_id = " "
+        @item.preparation_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include("Preparation is not a number")
+        expect(@item.errors.full_messages).to include('Preparation is not a number')
       end
       it '販売価格が入力されていないと出品できない' do
-        @item.selling_price = " "
+        @item.selling_price = ' '
         @item.valid?
         expect(@item.errors.full_messages).to include("Selling price can't be blank")
       end
