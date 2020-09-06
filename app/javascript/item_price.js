@@ -1,4 +1,4 @@
-window.addEventListener('load', function () {
+window.addEventListener("DOMContentLoaded", () => {
 
     const priceInput = document.getElementById("item-price");
     const PriceTax = document.getElementById("add-tax-price");
