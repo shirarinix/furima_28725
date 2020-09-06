@@ -46,8 +46,12 @@ RSpec.describe Item, type: :model do
         @item.selling_price = '500'
         expect(@item).to be_valid
       end
-      it '価格の範囲が、¥300〜¥9,999,999の間であること' do
-        @item.selling_price = '300~9999999'
+      it '価格の範囲が、¥300以上であること' do
+        @item.selling_price = '300'
+        expect(@item).to be_valid
+      end
+      it '価格の範囲が、¥9,999,999以下であること' do
+        @item.selling_price = '9999999'
         expect(@item).to be_valid
       end
     end
