@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :item do
     name             { Faker::Internet.domain_word }
-    # image            { 'furima-footer.png' }
     introduction     { Faker::Lorem.sentence }
     category_id      { Faker::Number.within(range: 1..10) }
     product_id       { Faker::Number.within(range: 1..10) }
