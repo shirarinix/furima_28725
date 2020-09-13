@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post 'items/new'
   resources :users, only: [:new, :create, :update]
   resources :items do
-    # resources :purchases
-    resources :addresses
+    resources :purchases
+    post 'purchases/new'
   end
 end

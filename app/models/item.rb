@@ -11,8 +11,8 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   # ジャンルの選択が「--」の時は保存できないようにする
-  validates :delivery_id, :product_id, :category_id, :prefecture_id, :preparation_id, numericality: { other_than: 0 }
+  validates :delivery_id, :product_id, :category_id, :prefecture_id, :preparation_id, numericality: { other_than: 0, message: "can't be blank" }
   # 空の投稿を保存できないようにする
   validates :image, :name, :introduction, :selling_price, presence: true
-  validates :selling_price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :selling_price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: "is out of setting range" }
 end
