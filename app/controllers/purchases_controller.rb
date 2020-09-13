@@ -8,10 +8,9 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase = PurchaseAddress.new(purchase_address_params)
     if @purchase.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render :new
     end
