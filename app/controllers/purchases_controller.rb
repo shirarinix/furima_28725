@@ -33,7 +33,7 @@ class PurchasesController < ApplicationController
     Payjp::Charge.create(                             # PAY.JPテスト秘密鍵
       amount: @item.selling_price,
       card: purchase_address_params[:token],          # カードトークン
-      currency:'jpy'                                # 通貨の種類(日本円)
+      currency:'jpy'                                 # 通貨の種類(日本円)
     )
   end
 end
