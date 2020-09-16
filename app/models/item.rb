@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :preparation
 
   belongs_to :user
-  has_one :purchas
+  has_one :purchase
   has_one_attached :image
 
   # ジャンルの選択が「--」の時は保存できないようにする

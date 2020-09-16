@@ -1,14 +1,14 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :direct_user, except: [:new]
-
+  before_action :item_find, only: [:new, :create]
+  # before_action :direct_user, only: [:new]
+  
   def new
-    @item = Item.find(params[:item_id])
+    return redirect_to root_path item_find.user_id || item_find.purchase != nil
     @purchase = PurchaseAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase = PurchaseAddress.new(purchase_address_params)
     if @purchase.valid?
       pay_item && @purchase.save
@@ -26,7 +26,6 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(                             # PAY.JPテスト秘密鍵
       amount: @item.selling_price,
@@ -35,10 +34,13 @@ class PurchasesController < ApplicationController
     )
   end
 
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
+
   def direct_user
-    unless user_signed_in?
-      @item = Item.find(params[:item_id])
-      redirect_to action: :new
+    if current_user.id == item_find.user_id || item_find.purchase != nil
+      redirect_to root_path
     end
   end
 end
