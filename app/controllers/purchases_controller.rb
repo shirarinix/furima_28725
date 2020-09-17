@@ -1,10 +1,9 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   before_action :item_find, only: [:new, :create]
-  # before_action :direct_user, only: [:new]
+  before_action :direct_user, only: [:new]
   
   def new
-    return redirect_to root_path item_find.user_id || item_find.purchase != nil
     @purchase = PurchaseAddress.new
   end
 
@@ -27,10 +26,10 @@ class PurchasesController < ApplicationController
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-    Payjp::Charge.create(                             # PAY.JPテスト秘密鍵
+    Payjp::Charge.create(                           # PAY.JPテスト秘密鍵
       amount: @item.selling_price,
-      card: purchase_address_params[:token],          # カードトークン
-      currency: 'jpy'                                  # 通貨の種類(日本円)
+      card: purchase_address_params[:token],        # カードトークン
+      currency: 'jpy'                               # 通貨の種類(日本円)
     )
   end
 
@@ -39,7 +38,7 @@ class PurchasesController < ApplicationController
   end
 
   def direct_user
-    if current_user.id == item_find.user_id || item_find.purchase != nil
+    if current_user.id == @item.user.id
       redirect_to root_path
     end
   end
