@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  before do
+  before '商品出品機能' do
     @item = FactoryBot.build(:item)
     @item.image = fixture_file_upload('app/assets/images/camera.png')
   end
@@ -75,27 +75,27 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが入力されていないと出品できない' do
         @item.category_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category is not a number')
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it '商品の状態が入力されていないと出品できない' do
         @item.product_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include('Product is not a number')
+        expect(@item.errors.full_messages).to include("Product can't be blank")
       end
       it '配送料の負担が入力されていないと出品できない' do
         @item.delivery_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery is not a number')
+        expect(@item.errors.full_messages).to include("Delivery can't be blank")
       end
       it '発送元の地域が入力されていないと出品できない' do
         @item.prefecture_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefecture is not a number')
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '発送までの日数が入力されていないと出品できない' do
         @item.preparation_id = ' '
         @item.valid?
-        expect(@item.errors.full_messages).to include('Preparation is not a number')
+        expect(@item.errors.full_messages).to include("Preparation can't be blank")
       end
       it '販売価格が入力されていないと出品できない' do
         @item.selling_price = ' '

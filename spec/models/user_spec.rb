@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before do
+  before 'ユーザー管理機能' do
     @user = FactoryBot.build(:user)
   end
 
