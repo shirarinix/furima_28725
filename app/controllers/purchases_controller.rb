@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   before_action :item_find, only: [:new, :create]
   before_action :direct_user, only: [:new]
-  
+
   def new
     @purchase = PurchaseAddress.new
   end
@@ -38,8 +38,6 @@ class PurchasesController < ApplicationController
   end
 
   def direct_user
-    if current_user.id == @item.user.id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user.id
   end
 end
